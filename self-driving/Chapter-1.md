@@ -1,4 +1,4 @@
-- **Two distinct ways to autonomous developme**
+1. **Two distinct ways to autonomous developme**
 
 -  Robotics approach
 
