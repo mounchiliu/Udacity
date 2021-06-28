@@ -22,6 +22,7 @@
 - Doppler effect measure the change in frequence of the radar waves based on whether the object is moving away from you or toward you.
 - The velocity  output can be used in sensor fusion, which makes fusion algorithms converge much faster.
 
+
 ## Lidar (Light Detection and ranging)
 ### Strenths and weaknesses
 - **Lidar uses infrared laser beam to determine the distance between the sensor and a nearby object**
