@@ -34,4 +34,4 @@
 - Disadvantage: cannot measure the velocity of objects directly (have to rely on the differing position between two or more scans)
 - Lidar are more affected by weather conditions and by dirt on the sensor
 
-# Lesson 02:Kalman Filter
+# Lesson 2: Kalman Filter
