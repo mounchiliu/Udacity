@@ -14,3 +14,6 @@
 - standard string view
 - parallel impelementations of many of the standard library algorithms
 - inline variables
+
+## Google coding style
+https://google.github.io/styleguide/cppguide.html
