@@ -1,6 +1,6 @@
-# Sensors
+# Lesson 1: Sensors
 
-## Radar (Ratio Detection and Ranging)
+## 1. Radar (Ratio Detection and Ranging)
 ### Strenths and weaknesses
 - **Radar uses Doppler effect to measure speed --- get velocity directly and precise vertical velocity**
 
@@ -23,7 +23,7 @@
 - The velocity  output can be used in sensor fusion, which makes fusion algorithms converge much faster.
 
 
-## Lidar (Light Detection and ranging)
+## 2. Lidar (Light Detection and ranging)
 ### Strenths and weaknesses
 - **Lidar uses infrared laser beam to determine the distance between the sensor and a nearby object**
   Lidar reflections returns a pointcloud to present objects
