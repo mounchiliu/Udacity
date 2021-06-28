@@ -47,4 +47,6 @@ In FK, distribution given here is Gaussion
 - mean: the center highest point, variance: the width of the Gaussian (half-width)
 - 1D Gaussian: X ~ N($\mu$, $\sigma$^2)
 
-**Our task in KF is:** to maintain $\mu$ and $\sigma$^2 as our best estimate of X. (保持对位置物体位置最佳估计的均值和方差)
+**Our task in KF is:** to maintain $\mu$ and $\sigma$^2 as our best estimate of X. 
+
+(保持对位置物体位置最佳估计的均值和方差)
