@@ -35,3 +35,9 @@
 - Lidar are more affected by weather conditions and by dirt on the sensor
 
 # Lesson 2: Kalman Filter
+- Requirement: Understanding where are the cars are, and make predictions on where they gonna move.
+
+- Key idea: 
+  1. KF estimates a **continuous** state
+  2. KF gives us a **uni-modal(单峰)** distribution (vs: Particle filter: continous, multi-modal)
+- 
