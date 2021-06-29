@@ -51,7 +51,7 @@ In FK, distribution given here is Gaussion
 **Our task in KF is:** to maintain $\mu$ and $\sigma$^2 as our best estimate of X. 
 (保持对位置物体位置最佳估计的均值和方差)
 
-**ans: **X ~  $\mu$， Gaussian function returns the maximum value
+**ans:** X ~  $\mu$， Gaussian function returns the maximum value
 
 ## Measurement and Motion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
@@ -84,3 +84,4 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 Assume we have prior (black Gaussian function) and measurement (blue), where will the new mean of new Gaussian function?
 ![image](https://user-images.githubusercontent.com/47606318/123800534-fb655a80-d91b-11eb-8681-7c44f4ce82c2.png)
 
+ans: middle, between the two old means. It should be slightly near the measurement side, because the measurement was more certain than the proir according to the diagram above.
