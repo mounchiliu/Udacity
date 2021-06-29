@@ -122,7 +122,6 @@ reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
 ### Python implementation of measurement update and prediction
 
 **1. measurement update**
-
 ![image](https://user-images.githubusercontent.com/47606318/123821141-ba764180-d92d-11eb-9df0-3db6eff1225a.png)
 
 **2. motion prediction**
@@ -130,7 +129,6 @@ reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
 ![image](https://user-images.githubusercontent.com/47606318/123821229-ccf07b00-d92d-11eb-9841-8e7fee6de4af.png)
 
 **3. initialize values**
-
 ![image](https://user-images.githubusercontent.com/47606318/123821559-16d96100-d92e-11eb-91f6-74af717343db.png)
 
 **4. combine** (start with initial value, and then use the resulting value)
