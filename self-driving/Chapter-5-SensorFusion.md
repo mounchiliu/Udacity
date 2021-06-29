@@ -55,7 +55,7 @@ In FK, distribution given here is Gaussion
 
 ## Measurement and Motion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
-- The first cycle is the **Measurement Update**
+- The first cycle is the **Measurement Update** ---- update posterior (i.e., where we should be, based on the measurements)
 
 **Uses Bayes rule + product**
 
@@ -74,7 +74,7 @@ we have
 
 We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normalize the probability.
 
-- The second cycle is the **Motion Update**
+- The second cycle is the **Motion Update** ---- do the prediction
 
 **Uses total probability + convolution**
 ![image](https://user-images.githubusercontent.com/47606318/123800759-35cef780-d91c-11eb-8e07-c8bf725d7add.png)
@@ -98,8 +98,10 @@ The two Gaussians together have a higher information content. (**Remember this c
 This is the Kalman filter **measurment update step**, the resulting gaussian represents the posterior.
        
 ### Separated Gaussians
-**Q:** Considering a prior distribution and a far away measurement distribution. These two distribution has the same variance. Where will be the mean of resulting Gaussian?
+**Q:** Considering a prior distribution and a far away measurement distribution. These two distribution has the same variance. Where will be the mean&variance of resulting Gaussian?
 ![image](https://user-images.githubusercontent.com/47606318/123811918-43897a80-d926-11eb-8e96-26e00084e694.png)
 
-**ans** In the middle, because the two variance are same, which averaging the means (can use the formula above)
+**ans:** Mean is in the middle, because the two variance are same, which averaging the means 
+         
+         vaiance is half of the old one(can use the formula above)
 
