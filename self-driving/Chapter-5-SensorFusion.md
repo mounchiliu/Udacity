@@ -97,4 +97,9 @@ The two Gaussians together have a higher information content. (**Remember this c
 
 This is the Kalman filter **measurment update step**, the resulting gaussian represents the posterior.
        
-    
+### Separated Gaussians
+**Q:** Considering a prior distribution and a far away measurement distribution. These two distribution has the same variance. Where will be the mean of resulting Gaussian?
+![image](https://user-images.githubusercontent.com/47606318/123811918-43897a80-d926-11eb-8e96-26e00084e694.png)
+
+**ans** In the middle, because the two variance are same, which averaging the means (can use the formula above)
+
