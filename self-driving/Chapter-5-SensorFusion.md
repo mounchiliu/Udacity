@@ -59,7 +59,7 @@ The Kalman Filter represents our distributions by Gaussians and iterates on two 
 
 Uses Bayes rule:
 
-<center> $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$ </center>
+<p align="center"> $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$ </p>
 
 if$B = { B_1, B_2, \dots, B_n}$
 
