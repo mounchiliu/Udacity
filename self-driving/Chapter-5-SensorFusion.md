@@ -59,18 +59,20 @@ The Kalman Filter represents our distributions by Gaussians and iterates on two 
 
 Uses Bayes rule:
 
-$P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$
+<center> $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$ </center>
 
 if$B = { B_1, B_2, \dots, B_n}$
 
 then,
 
-$P(A) = \sum_{i=1}^n P(B_i) P(A \mid B_i)$
+<center> $P(A) = \sum_{i=1}^n P(B_i) P(A \mid B_i)$ </center>
 
 we have 
 
-$P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
-{\sum_{i=1}^n P(B_i) P(A \mid B_i)}$
+<center> $P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
+{\sum_{i=1}^n P(B_i) P(A \mid B_i)}$ </center>
+
+We call P(B_i \mid A) posterior probability.
 
 - The second cycle is the **Motion Update**
 
