@@ -57,7 +57,7 @@ In FK, distribution given here is Gaussion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
 - The first cycle is the **Measurement Update**
 
-Uses Bayes rule:
+### Uses Bayes rule:
 
 <p align="center"> $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$ </p>
 
@@ -76,4 +76,4 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 
 - The second cycle is the **Motion Update**
 
-Uses total probability
+### Uses total probability
