@@ -104,4 +104,4 @@ This is the Kalman filter **measurment update step**, the resulting gaussian rep
 **ans:** 
 - Mean is in the middle, because the two variance are same, which averaging the means 
 - Vaiance is half of the old one(can use the formula above)
-
+-（注意图中y值临近0， 但不等于0）
