@@ -91,8 +91,9 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 **ans:** The resulting Gaussian is more certain than two component gaussians. (Variance is smaller than either of the two gaussians).
 The two Gaussians together have a higher information content. (**Remember this conclusion**)
 
-prove:do the multiplying between two gaussian function, the new mean is weighted by two variances, the variance see below:  
+**Prove:** do the multiplying between two gaussian function, the new mean is weighted by two variances, the variance see below:  
     ![image](https://user-images.githubusercontent.com/47606318/123805520-b859b600-d920-11eb-9810-5b76bb7a8063.png)
 
+This is the measurment step, the resulting gaussian represents the posterior.
        
     
