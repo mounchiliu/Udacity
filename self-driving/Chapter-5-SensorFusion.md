@@ -65,12 +65,12 @@ if$B = { B_1, B_2, \dots, B_n}$
 
 then,
 
-<center> $P(A) = \sum_{i=1}^n P(B_i) P(A \mid B_i)$ </center>
+<p align="center"> $P(A) = \sum_{i=1}^n P(B_i) P(A \mid B_i)$ </p>
 
 we have 
 
-<center>$P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
-{\sum_{i=1}^n P(B_i) P(A \mid B_i)}$</center>
+<p align="center">$P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
+{\sum_{i=1}^n P(B_i) P(A \mid B_i)}$</p>
 
 We call $P(B_i \mid A)$ posterior probability.
 
