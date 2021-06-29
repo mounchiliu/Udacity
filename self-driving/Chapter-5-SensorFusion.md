@@ -58,6 +58,7 @@ The Kalman Filter represents our distributions by Gaussians and iterates on two 
 - The first cycle is the **Measurement Update**
 
 Bayes rule
+$P_2(e) = \int_{R_1} {p(x|w_2)P(w_2)} \,{\rm d}x$
 
 - The second cycle is the **Motion Update**
 
