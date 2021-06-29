@@ -57,7 +57,7 @@ In FK, distribution given here is Gaussion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
 - The first cycle is the **Measurement Update**
 
-### Uses Bayes rule:
+**Uses Bayes rule + product**
 
 <p align="center"> $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$ </p>
 
@@ -76,4 +76,11 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 
 - The second cycle is the **Motion Update**
 
-### Uses total probability
+**Uses total probability + convolution**
+![image](https://user-images.githubusercontent.com/47606318/123800759-35cef780-d91c-11eb-8e07-c8bf725d7add.png)
+
+## Shift of mean
+
+Assume we have prior (black Gaussian function) and measurement (blue), where will the new mean of new Gaussian function?
+![image](https://user-images.githubusercontent.com/47606318/123800534-fb655a80-d91b-11eb-8681-7c44f4ce82c2.png)
+
