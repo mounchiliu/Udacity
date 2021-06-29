@@ -132,5 +132,9 @@ reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
 
 ![image](https://user-images.githubusercontent.com/47606318/123821559-16d96100-d92e-11eb-91f6-74af717343db.png)
 
-**4. combine** (start with initial value, and then use the resulting value)
+**4. kalman filter 1d** (start with initial value, and then use the resulting value)
 ![image](https://user-images.githubusercontent.com/47606318/123821498-06c18180-d92e-11eb-8cc2-7fc5ac9f23ad.png)
+
+### Kalman filter in higher dimensions 
+- KF in higher dimension not just allow you to just go into different dimension spaces (e.g. x, y), but also also allows you to **figure out the velocity of the object**. Use of the **velocity estimate for predicition** allow you to make a **good prediction of location**.
+- Notice: sensor itself only sees position. Velocity is inferred from multiple seen positions
