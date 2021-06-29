@@ -84,4 +84,4 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 Assume we have prior (black Gaussian function) and measurement (blue), where will the new mean of new Gaussian function?
 ![image](https://user-images.githubusercontent.com/47606318/123800534-fb655a80-d91b-11eb-8681-7c44f4ce82c2.png)
 
-ans: middle, between the two old means. It should be slightly near the measurement side, because the measurement was more certain than the proir according to the diagram above.
+**ans:** middle, between the two old means. It should be slightly near the measurement side, because the measurement was more certain than the proir according to the diagram above.
