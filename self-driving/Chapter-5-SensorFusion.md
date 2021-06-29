@@ -72,7 +72,7 @@ we have
 <p align="center">$P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
 {\sum_{i=1}^n P(B_i) P(A \mid B_i)}$</p>
 
-We call $P(B_i \mid A)$ posterior probability.
+We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normalize the probability.
 
 - The second cycle is the **Motion Update**
 
