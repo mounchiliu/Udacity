@@ -94,6 +94,6 @@ The two Gaussians together have a higher information content. (**Remember this c
 **Prove:** do the multiplying between two gaussian function, the new mean is weighted by two variances, the variance see below:  
     ![image](https://user-images.githubusercontent.com/47606318/123805520-b859b600-d920-11eb-9810-5b76bb7a8063.png)
 
-This is the measurment step, the resulting gaussian represents the posterior.
+This is the Kalman filter measurment update step, the resulting gaussian represents the posterior.
        
     
