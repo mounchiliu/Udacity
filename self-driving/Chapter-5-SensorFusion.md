@@ -101,7 +101,7 @@ This is the Kalman filter **measurment update step**, the resulting gaussian rep
 **Q:** Considering a prior distribution and a far away measurement distribution. These two distribution has the same variance. Where will be the mean&variance of resulting Gaussian?
 ![image](https://user-images.githubusercontent.com/47606318/123811918-43897a80-d926-11eb-8e96-26e00084e694.png)
 
-**ans:** Mean is in the middle, because the two variance are same, which averaging the means 
-         
-         vaiance is half of the old one(can use the formula above)
+**ans:** 
+- Mean is in the middle, because the two variance are same, which averaging the means 
+- Vaiance is half of the old one(can use the formula above)
 
