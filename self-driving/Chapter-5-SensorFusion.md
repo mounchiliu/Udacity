@@ -61,7 +61,7 @@ Uses Bayes rule:
 
 $P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$
 
-if $B = \left\{ B_1, B_2, \dots, B_n \right\}$
+if$B = \left\{ B_1, B_2, \dots, B_n \right\}$
 
 then,
 
