@@ -23,7 +23,7 @@
 - The velocity  output can be used in sensor fusion, which makes fusion algorithms converge much faster.
 
 
-## 2. Lidar (Light Detection and ranging)
+## 2. Lidar (Light Detection and Ranging)
 ### Strenths and weaknesses
 - **Lidar uses infrared laser beam to determine the distance between the sensor and a nearby object**
   Lidar reflections returns a pointcloud to present objects
@@ -56,7 +56,9 @@ In FK, distribution given here is Gaussion
 ## Measurement and Motion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
 - The first cycle is the **Measurement Update**
+
 Bayes rule
 
 - The second cycle is the **Motion Update**
+
 Uses total probability
