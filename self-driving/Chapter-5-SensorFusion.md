@@ -81,7 +81,18 @@ We call $P(B_i \mid A)$ posterior probability. The bottom P(A) is used to normal
 
 ## Shift of mean
 
-Assume we have prior (black Gaussian function) and measurement (blue), where will the new mean of new Gaussian function?
+**Q:** Assume we have prior (black Gaussian function) and measurement (blue), where will the new mean of new Gaussian function?
 ![image](https://user-images.githubusercontent.com/47606318/123800534-fb655a80-d91b-11eb-8681-7c44f4ce82c2.png)
 
 **ans:** middle, between the two old means. It should be slightly near the measurement side, because the measurement was more certain than the proir according to the diagram above.
+
+**Q:** Referring to the diagram above, what will be the width (variance) of new gaussian after multiplying these two gaussians?
+
+**ans:** The resulting Gaussian is more certain than two component gaussians. (Variance is smaller than either of the two gaussians).
+The two Gaussians together have a higher information content. (**Remember this conclusion**)
+
+prove:do the multiplying between two gaussian function, the new mean is weighted by two variances, the variance see below:  
+    ![image](https://user-images.githubusercontent.com/47606318/123805520-b859b600-d920-11eb-9810-5b76bb7a8063.png)
+
+       
+    
