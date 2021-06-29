@@ -57,8 +57,20 @@ In FK, distribution given here is Gaussion
 The Kalman Filter represents our distributions by Gaussians and iterates on two main cycles.
 - The first cycle is the **Measurement Update**
 
-Bayes rule
-$P_2(e) = \int_{R_1} {p(x|w_2)P(w_2)} \,{\rm d}x$
+Uses Bayes rule:
+
+$P(B \mid A) = \frac{P(B) P(A \mid B)} {P(A)}$
+
+if $B = \left\{ B_1, B_2, \dots, B_n \right\}$
+
+then,
+
+$P(A) = \sum_{i=1}^n P(B_i) P(A \mid B_i)$
+
+we have 
+
+$P(B_i \mid A) = \frac{P(B_i) P(A \mid B_i)}
+{\sum_{i=1}^n P(B_i) P(A \mid B_i)}$
 
 - The second cycle is the **Motion Update**
 
