@@ -51,3 +51,5 @@ In FK, distribution given here is Gaussion
 **Our task in KF is:** to maintain $\mu$ and $\sigma$^2 as our best estimate of X. 
 (保持对位置物体位置最佳估计的均值和方差)
 
+X ~  $\mu$， Gaussian function returns the maximum value
+
