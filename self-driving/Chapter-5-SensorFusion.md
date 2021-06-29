@@ -105,3 +105,15 @@ This is the Kalman filter **measurment update step**, the resulting gaussian rep
 - Mean is in the middle, because the two variance are same, which averaging the means 
 - Vaiance is half of the old one(can use the formula above)
 -（注意图中y值临近0， 但不等于0）
+
+### Gaussian motion update
+蓝色：current location
+
+绿色：motion
+
+红色：predicted location (可参照，两相互独立，分别关于X,Y的高斯分布相加(X+Y)，所得结果就是mean 和 variance相加的定理 --- 两高斯分布做卷积)
+
+reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
+
+![image](https://user-images.githubusercontent.com/47606318/123816329-ce1fa900-d929-11eb-9eb7-fb2396990845.png)
+
