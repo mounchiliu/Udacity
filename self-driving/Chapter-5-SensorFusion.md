@@ -138,3 +138,20 @@ reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
 ### Kalman filter in higher dimensions 
 - KF in higher dimension not just allow you to just go into different dimension spaces (e.g. x, y), but also also allows you to **figure out the velocity of the object**. Use of the **velocity estimate for predicition** allow you to make a **good prediction of location**.
 - Notice: sensor itself only sees position. Velocity is inferred from multiple seen positions
+
+#### High dimensional Gaussians (multivariate Gaussians)
+- n dimensional vector of mean
+- nxn matrix of **covariance**
+- diagram of two dimensional gaussian (mean: center (x0,y0), covariance defiens the spread of the Gaussian)
+
+(you may have certain uncertainty in one dimension and huge uncertainty in another)
+
+![image](https://user-images.githubusercontent.com/47606318/124127978-e836c400-daae-11eb-8237-df8e64bc5831.png)
+
+### Kalman filter (e.g. two dimension example)
+- Build two dimensional estimate e.g. 1 for location, 1 for velocity
+- Initially know my location and velocity -> represent it with 2D gaussian that elevated around the location & board in velocity (shown in diagram)
+- Prediction step: dont know the velocity -> cant know current location.
+
+  But there will be some correlation: use the location and velocity at current time to predict the next time.
+ ![image](https://user-images.githubusercontent.com/47606318/124130054-f38aef00-dab0-11eb-9dc7-9e7061173ffe.png)
