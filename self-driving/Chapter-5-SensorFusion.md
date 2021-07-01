@@ -151,7 +151,22 @@ reference: https://blog.csdn.net/chaosir1991/article/details/106960408/
 ### Kalman filter (e.g. two dimension example)
 - Build two dimensional estimate e.g. 1 for location, 1 for velocity
 - Initially know my location and velocity -> represent it with 2D gaussian that elevated around the location & board in velocity (shown in diagram)
-- Prediction step: dont know the velocity -> cant know current location.
+- Prediction step: dont know the velocity -> so cant know current location.
 
-  But there will be some correlation: use the location and velocity at current time to predict the next time.
+  But there will be some correlation: use the location to calculate velocity and to predict the location in next time.
+    **That is, location is correlated with volocity**
+       x' = x + Δtẋ'
  ![image](https://user-images.githubusercontent.com/47606318/124130054-f38aef00-dab0-11eb-9dc7-9e7061173ffe.png)
+
+Summary: In Kalman Filter, we can figure out hidden variables (e.g. velocity) from observed measurements (e.g. velocity), which helps us to do the prediction.
+
+### Design of Kalman Filter
+We need:
+- for the state, we need transition function. (KF: uses a matrix, because we assumes linear motion)
+- for the measurement, we need a measuremtn function.
+- prediction & measurement update (below)
+![image](https://user-images.githubusercontent.com/47606318/124137151-fe954d80-dab7-11eb-8a9c-2935f9528e8c.png)
+
+**Note: KF精髓在于Kalman gain. Kalman gain本质上是weighted average 的 weight。你越相信你的prediction，uncertainty越小，observation的weight就越小；反之，你越不相信你的prediction，uncertainty越大，observation的weight越大。
+
+
