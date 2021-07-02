@@ -169,7 +169,7 @@ We need:
 
 **Note: KF精髓在于Kalman gain. Kalman gain本质上是weighted average 的 weight。你越相信你的prediction，uncertainty越小，observation的weight就越小；反之，你越不相信你的prediction，uncertainty越大，observation的weight越大。**
 
-- Kalman Filter Summary with simple example
+- Kalman Filter Summary with simple example (use location & velocity as estimated state)
 ![image](https://user-images.githubusercontent.com/47606318/124292555-497e9600-db88-11eb-8794-89735ec8d624.png)
 ![image](https://user-images.githubusercontent.com/47606318/124292606-57341b80-db88-11eb-99dd-db9328e0440b.png)
 
