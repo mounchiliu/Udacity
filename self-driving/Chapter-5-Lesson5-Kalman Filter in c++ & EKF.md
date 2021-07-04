@@ -6,7 +6,7 @@
 - **EKF** is able to handling more complex **motion models and measurement models**.
 ![image](https://user-images.githubusercontent.com/47606318/124294318-1d641480-db8a-11eb-8c18-346cce02f34d.png)
 
-### Flowchart of Kalman Filter
+### Flowchart of Kalman Filter for fusion with lidar and radar
 ![image](https://user-images.githubusercontent.com/47606318/124385969-90949480-dd0a-11eb-8e85-d60abce5ae2e.png)
 
 - you have two sensors, a lidar and a radar
@@ -22,3 +22,6 @@
   - however, radar measurements involve a nonlinear measurement function
     - so when we receive radar measurements, we use different tweaks to handle the measurement update
     - for instance, we may use Extended Kalman filter equations, which you'll see later
+
+### Extended Kalman Filter
+
