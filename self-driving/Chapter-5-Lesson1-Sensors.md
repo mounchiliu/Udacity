@@ -173,5 +173,6 @@ We need:
 ![image](https://user-images.githubusercontent.com/47606318/124292555-497e9600-db88-11eb-8794-89735ec8d624.png)
 ![image](https://user-images.githubusercontent.com/47606318/124292606-57341b80-db88-11eb-99dd-db9328e0440b.png)
 
-
+more in：
+E:/BaiduNetdiskDownload/udacity/Self-Driving-Car-Engineer-Nanodegree-master/Self-Driving-Car-Engineer-Nanodegree-master/lectures/15-Extended_Kalman_Filters/sensor-fusion-ekf-reference.pdf
 
