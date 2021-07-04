@@ -23,5 +23,41 @@
     - so when we receive radar measurements, we use different tweaks to handle the measurement update
     - for instance, we may use Extended Kalman filter equations, which you'll see later
 
-### Extended Kalman Filter
 
+
+**Q:** but what happens when there are two sensors that observe the same pedestrian? how does that change the Kalman filter?
+**ans:**
+- actually, we can keep the same processing flow with the difference that each sensor is going to have its **own prediction/update scheme**
+- (当不同传感器 measurement 获取不在同一时刻时， update asynchronously, 只是不同传感器的measurement update 不一样)in other words, the belief about the pedestrian's position and velocity is **updated asynchronously** each time new measurement is received **regardless the source sensor**
+![image](https://user-images.githubusercontent.com/47606318/124387378-f5eb8400-dd10-11eb-9039-597533e3beec.png)
+
+**Example**
+![image](https://user-images.githubusercontent.com/47606318/124387412-2501f580-dd11-11eb-8d68-1931be3cac59.png)
+
+- here the pedestrian state at time  k  is a distribution with its mean  x  and covariance  P 
+- let's say we're now at time  k+1 , and we've just received the laser measurement
+  - the first thing we do before we look at the measurement update is to make a prediction about where we think the pedestrian from time  k  will be at time  k+1 
+  - the second thing we do is the so called measurement update, where we combine the pedestrian's predicted state with the new laser measurement
+  - what we now have is a more accurate belief about the pedestrian's position at time  k+1 ; this is what we call the posterior
+- now let's imagine that we receive the radar measurement at time  k+2 
+  - first, we again predict the pedestrian state from  k+1  to  k+2 
+    - note, this prediction for radar is exactly the same function as in the laser case
+  - what changes, in this case, is the Measurement Update step
+    - as we know, the radar sees the word differently than laser
+    - while laser provides measurement in a Cartesian coordinate system, radar provides measurement in a polar coordinate system
+    - thus we have to use different measurement update functions specific to radar data, so this is a more detailed view of the Kalman filter
+- **we received the measurements from different sensors at each timestamp, and then we make a prediction followed by a measurement update**
+
+![image](https://user-images.githubusercontent.com/47606318/124388009-5085df80-dd13-11eb-8ebb-3d552a4a2c27.png)
+
+**Q:** What should a Kalman Filter do if both the radar and laser measurements arrive at the same time, k+3 ? 
+
+**Hint:** The Kalman filter algorithm predicts -> updates -> predicts -> updates, etc. If two sensor measurements come in simultaneously, the time step between the first measurement and the second measurement would be zero.
+
+**ans:** 
+- **Predict** the state to k+3 then use either one of the sensors to update. Then predict the state to k+3 again and update with the other sensor measurement.
+- as you saw, the Kalman filter is a two-step process: predict, and then update
+- if you receive two measurements simultaneously, you can use this process with either measurement and then repeat the process with the other measurement
+  - the order does not matter!
+- because we have already run a prediction-update iteration with the first sensor at time  k+3 , **the output of the second prediction at time  k+3  will actually be identical** to the output from the update step with the first sensor
+- so, **in theory**, you could **skip the second prediction step** and just run a prediction, update, update iteration
