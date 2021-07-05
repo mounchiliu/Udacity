@@ -84,3 +84,4 @@ The K K matrix, often called the Kalman filter gain, combines the uncertainty of
   . If where we think we are is uncertain (P' is high relative to R), the Kalman filter will put more weight on the sensor measurement: z z .
 
 Measurement noise refers to uncertainty in sensor measurements. The notation \omega \sim N(0, R) ω∼N(0,R) defines the measurement noise as a gaussian distribution with mean zero and covariance R. Measurement noise comes from uncertainty in sensor measurements.
+
