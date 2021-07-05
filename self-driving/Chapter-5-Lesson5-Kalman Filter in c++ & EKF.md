@@ -101,6 +101,7 @@ The Kalman equation contains many variables, so here is a high level overview to
 - Bu would represent the updated position of the car due to the internal force of the motor
 - we would use  ν  to represent any random noise that we could not precisely predict like if the car slipped on the road or a strong wind moved the car
 
+
 - for the Kalman filter lessons, we will **assume that there is no way to measure or know the exact acceleration** of a tracked object
 - for example, if we were in an autonomous vehicle tracking a bicycle, pedestrian or another car, we would **not be able to model the internal forces** of the other object; hence, we do not know for certain what the other object's acceleration is
 - instead, we will set  Bu=0  and represent acceleration as a random noise with mean  ν
