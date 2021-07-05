@@ -175,6 +175,7 @@ We need:
 
 - the state transition function, that models how the state is changed from time  k−1  to time  k 
 - the measurement function, that models how the measurement is calculated, and how it's related to the predicted state  x
-more in：
+
+more details in：
 https://github.com/mounchiliu/Udacity/blob/main/self-driving/sensor-fusion-ekf-reference.pdf
 
