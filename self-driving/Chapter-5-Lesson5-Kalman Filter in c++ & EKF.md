@@ -61,3 +61,26 @@
   - the order does not matter!
 - because we have already run a prediction-update iteration with the first sensor at time  k+3 , **the output of the second prediction at time  k+3  will actually be identical** to the output from the update step with the first sensor
 - so, **in theory**, you could **skip the second prediction step** and just run a prediction, update, update iteration
+
+### Kalman filter in c++
+The Kalman equation contains many variables, so here is a high level overview to get some intuition about what the Kalman filter is doing.
+
+#### Intuition
+
+**Prediction**
+Let's say we know an object's current position and velocity , which we keep in the x variable. Now one second has passed. We can predict where the object will be one second later because we knew the object position and velocity one second ago; we'll just assume the object kept going at the same velocity.
+
+The x&#x27; = Fx + \nu x′=Fx+ν equation does these prediction calculations for us.
+
+But maybe the object didn't maintain the exact same velocity. Maybe the object changed direction, accelerated or decelerated. So when we predict the position one second later, our uncertainty increases. P&#x27; = FPF^T + Q P′=FPF^T
+ +Q represents this increase in uncertainty.
+
+Process noise refers to the uncertainty in the prediction step. We assume the object travels at a constant velocity, but in reality, the object might accelerate or decelerate. The notation \nu \sim N(0, Q) ν∼N(0,Q) defines the process noise as a gaussian distribution with mean zero and covariance Q.
+
+**Update**
+Now we get some sensor information that tells where the object is relative to the car. First we compare where we think we are with what the sensor data tells us y = z - Hx&#x27; y=z−Hx′.
+
+The K K matrix, often called the Kalman filter gain, combines the uncertainty of where we think we are P&#x27; P′ with the uncertainty of our sensor measurement R R . If our sensor measurements are very uncertain (R is high relative to P'), then the Kalman filter will give more weight to where we think we are: x&#x27; x′
+  . If where we think we are is uncertain (P' is high relative to R), the Kalman filter will put more weight on the sensor measurement: z z .
+
+Measurement noise refers to uncertainty in sensor measurements. The notation \omega \sim N(0, R) ω∼N(0,R) defines the measurement noise as a gaussian distribution with mean zero and covariance R. Measurement noise comes from uncertainty in sensor measurements.
