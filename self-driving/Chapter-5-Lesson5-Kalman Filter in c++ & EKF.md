@@ -92,8 +92,8 @@ The Kalman equation contains many variables, so here is a high level overview to
 - The notationω∼N(0,R) defines the measurement noise as a gaussian distribution with mean zero and covariance R.
 
 
-**A Note About the State Transition Function: Bu***
-- if you go back to the video, you'll notice that the state transition function was first given as **x′=Fx+Bu+ν ** 
+**A Note About the State Transition Function: Bu**
+- if you go back to the video, you'll notice that the state transition function was first given as **x′=Fx+Bu+ν** 
 - But then  Bu  was crossed out leaving  x′=Fx+ν 
 
 - B is a matrix called the control input matrix and  u is the control vector
@@ -105,3 +105,11 @@ The Kalman equation contains many variables, so here is a high level overview to
 - for the Kalman filter lessons, we will **assume that there is no way to measure or know the exact acceleration** of a tracked object
 - for example, if we were in an autonomous vehicle tracking a bicycle, pedestrian or another car, we would **not be able to model the internal forces** of the other object; hence, we do not know for certain what the other object's acceleration is
 - instead, we will set  Bu=0  and represent acceleration as a random noise with mean  ν
+
+#### Equations in C++
+![image](https://user-images.githubusercontent.com/47606318/124488782-d1f87300-dde2-11eb-89c6-693413f0052c.png)
+
+![image](https://user-images.githubusercontent.com/47606318/124488819-dde43500-dde2-11eb-8cbd-557f307a71db.png)
+
+![image](https://user-images.githubusercontent.com/47606318/124488905-fb190380-dde2-11eb-9009-ad756cf70b7b.png)
+
