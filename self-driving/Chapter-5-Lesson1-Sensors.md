@@ -173,6 +173,8 @@ We need:
 ![image](https://user-images.githubusercontent.com/47606318/124292555-497e9600-db88-11eb-8794-89735ec8d624.png)
 ![image](https://user-images.githubusercontent.com/47606318/124292606-57341b80-db88-11eb-99dd-db9328e0440b.png)
 
+- the state transition function, that models how the state is changed from time  k−1  to time  k 
+- the measurement function, that models how the measurement is calculated, and how it's related to the predicted state  x
 more in：
 https://github.com/mounchiliu/Udacity/blob/main/self-driving/sensor-fusion-ekf-reference.pdf
 
