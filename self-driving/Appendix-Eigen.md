@@ -16,13 +16,16 @@
   for example, this is an initialization of a 2 by 2 matrix with the values 1, 2, 3, and 4:
   
    MatrixXd my_matrix(2,2);
+   
    my_matrix << 1, 2,
              3, 4;
              
 - you can use the same comma initializer or you can set each matrix value explicitly
   
   for example, that's how we can change the matrix elements in the second row:
+  
    my_matrix(1,0) = 11;    //second row, first column
+   
    my_matrix(1,1) = 12;    //second row, second column
   
 - you can compute the transpose of a matrix with the following command:
