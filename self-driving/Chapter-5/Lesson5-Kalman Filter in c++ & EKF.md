@@ -113,3 +113,7 @@ The Kalman equation contains many variables, so here is a high level overview to
 
 ![image](https://user-images.githubusercontent.com/47606318/124488905-fb190380-dde2-11eb-9009-ad756cf70b7b.png)
 
+Notice:
+- Over time, the order of these doesn't have a huge impact, since it is just a cycle from one to the other.
+- Here, the first thing you need is a measurement because otherwise there is no location information or even information that the object exists unless a sensor picked it up. 
+- So, you initialize location values with the measurement.
