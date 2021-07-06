@@ -121,7 +121,8 @@ Notice:
 - So, you initialize location values with the measurement.
 
 #### implementation in c++
-'void filter(VectorXd &x, MatrixXd &P) {
+'
+void filter(VectorXd &x, MatrixXd &P) {
 
   for (unsigned int n = 0; n < measurements.size(); ++n) {
 
@@ -150,4 +151,5 @@ Notice:
     cout << "x=" << endl <<  x << endl;
     cout << "P=" << endl <<  P << endl;
   }
-}'
+}
+'
