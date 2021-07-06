@@ -249,9 +249,14 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 - second, we'll use the same linear motion model with the custom velocity
   - so, the new  x  and  y  position will be the old positions + the displacement, which is the same as the velocity * delta t
-     - p′x=px+vxΔt+νpx 
-     - p′y=py+vyΔt+νpy 
+     - p′x=px+vxΔt+νpx(noise)
+     - p′y=py+vyΔt+νpy(noise)
   - the velocity along both  x  and  y  axes stays the same
-     - v′x=vx+νvx 
-     - v′y=vy+νvy 
+     - v′x=vx+νvx(noise)
+     - v′y=vy+νvy(noise)
    - these are kinematic formulas
+![image](https://user-images.githubusercontent.com/47606318/124617467-88269000-dea9-11eb-9e45-6fe5fc4c5c12.png)
+
+**Notice：**
+- Δt  is not constant anymore
+- in reality, the time elapsed between two consecutive observations might vary
