@@ -12,7 +12,7 @@
   cout << my_vector << endl;
   
 - the matrices can be created in the same way
-- 
+
   for example, this is an initialization of a 2 by 2 matrix with the values 1, 2, 3, and 4:
   
    MatrixXd my_matrix(2,2);
