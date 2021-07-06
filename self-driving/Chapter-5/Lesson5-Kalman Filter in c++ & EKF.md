@@ -29,9 +29,11 @@
 **ans:**
 - actually, we can keep the same processing flow with the difference that each sensor is going to have its **own prediction/update scheme**
 - (当不同传感器 measurement 获取不在同一时刻时， update asynchronously, 只是不同传感器的measurement update 不一样)in other words, the belief about the pedestrian's position and velocity is **updated asynchronously** each time new measurement is received **regardless the source sensor**
+
 ![image](https://user-images.githubusercontent.com/47606318/124387378-f5eb8400-dd10-11eb-9039-597533e3beec.png)
 
 **Example**
+
 ![image](https://user-images.githubusercontent.com/47606318/124387412-2501f580-dd11-11eb-8d68-1931be3cac59.png)
 
 - here the pedestrian state at time  k  is a distribution with its mean  x  and covariance  P 
