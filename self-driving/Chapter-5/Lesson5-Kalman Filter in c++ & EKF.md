@@ -245,7 +245,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 
   we now want to estimate a 2D position and 2D velocity
   
-- ![image](https://user-images.githubusercontent.com/47606318/124616622-d38c6e80-dea8-11eb-9f19-c96f3af9143f.png)
+![image](https://user-images.githubusercontent.com/47606318/124616622-d38c6e80-dea8-11eb-9f19-c96f3af9143f.png)
 
 - second, we'll use the same linear motion model with the custom velocity
   - so, the new  x  and  y  position will be the old positions + the displacement, which is the same as the velocity * delta t
