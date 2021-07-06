@@ -260,3 +260,17 @@ Why do we not use the process noise in the state prediction function, even thoug
 **Notice：**
 - Δt  is not constant anymore
 - in reality, the time elapsed between two consecutive observations might vary
+
+**Remainder: motion noice (process noise) VS measurement noise**
+- Motion noise and process noise refer to the same case: uncertainty in the object's position when predicting location. The model **assumes velocity is constant between time intervals**, but **in reality** we know that an **object's velocity can change due to acceleration**. The model includes this **uncertainty** via the **process noise**.
+
+- **Measurement noise** refers to **uncertainty** in sensor measurements, which will be discussed in more detail later.
+
+**Q1:** Suppose you have a pedestrian state X. I want you to compare two scenarios: in the first predict the state 0.1s into the future and in the second 5s into the future. Which of these two scenarios leads to a higher uncertainty? In answering this, consider whether or not random noise has an increasing effect with increasing gaps between prediction times.
+
+**A:** A time difference of 5s leads to a higher uncertainty. Here's another way of thinking about it: if you split the 5s time difference into several intermediate predictions with a difference of 0.1s, then compared to the first case, you will predict the same state many more times without receiving any feedback about the object's new position. Thus, the uncertainty increases.
+
+**Q2:** Let's say we use our linear motion model with fixed time increments, but the pedestrian is randomly changing her velocity (accelerating), sometimes speeding up, slowing down or changing direction. However, the overall mean change is zero. This introduces a noise in the tracking process - what kind of noise is it?
+
+**A:** It's process noise. The prediction equation treats the pedestrian's velocity as constant. As such, a randomly accelerating pedestrian creates a process noise.
+
