@@ -36,5 +36,6 @@
 - for multiplying the matrix m* with the vector *b you can write this in one line as let’s say matrix c* equals *m times v:
   
   MatrixXd another_matrix;
+  
   another_matrix = my_matrix*my_vector;
   
