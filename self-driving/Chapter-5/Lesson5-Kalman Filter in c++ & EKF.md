@@ -228,7 +228,7 @@ void filter(VectorXd &x, MatrixXd &P) {
 ```
     
     
-**Q:*
+**Q:**
 
 Why do we not use the process noise in the state prediction function, even though the state transition equation has one? In other words, why does the code set u << 0, 0 for the equation  x=F∗x+u ?
 
