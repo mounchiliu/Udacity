@@ -119,3 +119,35 @@ Notice:
 - Over time, the order of these doesn't have a huge impact, since it is just a cycle from one to the other.
 - Here, the first thing you need is a measurement because otherwise there is no location information or even information that the object exists unless a sensor picked it up. 
 - So, you initialize location values with the measurement.
+
+#### implementation in c++
+'void filter(VectorXd &x, MatrixXd &P) {
+
+  for (unsigned int n = 0; n < measurements.size(); ++n) {
+
+    VectorXd z = measurements[n];
+    // TODO: YOUR CODE HERE
+    /**
+     * KF Measurement update step
+     */
+    VectorXd y = z - H * x;
+    MatrixXd Ht = H.transpose();
+    MatrixXd S = H * P * Ht + R;
+    MatrixXd Si = S.inverse();
+    MatrixXd K =  P * Ht * Si;
+
+    // new state
+    x = x + (K * y);
+    P = (I - K * H) * P;
+
+    /**
+     * KF Prediction step
+     */
+    x = F * x + u;
+    MatrixXd Ft = F.transpose();
+    P = F * P * Ft + Q;
+
+    cout << "x=" << endl <<  x << endl;
+    cout << "P=" << endl <<  P << endl;
+  }
+}'
