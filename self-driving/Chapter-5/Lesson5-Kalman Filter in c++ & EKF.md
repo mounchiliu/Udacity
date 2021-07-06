@@ -120,7 +120,7 @@ Notice:
 - Here, the first thing you need is a measurement because otherwise there is no location information or even information that the object exists unless a sensor picked it up. 
 - So, you initialize location values with the measurement.
 
-#### implementation in c++
+#### 1D tracking problem implementation in c++
 
 ```cpp
 /** 
@@ -238,3 +238,20 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 - Because the noise mean is zero. 
 - Looking closely at the process noise, we know from the Kalman Filter algorithm that its mean is zero and its covariance matrix is usually noted by N(0,Q)  The first equation only predicts the mean state. As the mean value of the noise is zero, it does not directly affect the predicted state. However, we can see that the noise covariance  Q  is added here to the state covariance prediction so that the state uncertainty always increases through the process noise
+
+
+### 2D tracking problem with Kalman Filter
+- as our pedestrian is moving along both horizontal and vertical directions
+
+  we now want to estimate a 2D position and 2D velocity
+  
+- ![image](https://user-images.githubusercontent.com/47606318/124616622-d38c6e80-dea8-11eb-9f19-c96f3af9143f.png)
+
+- second, we'll use the same linear motion model with the custom velocity
+  - so, the new  x  and  y  position will be the old positions + the displacement, which is the same as the velocity * delta t
+     - p′x=px+vxΔt+νpx 
+     - p′y=py+vyΔt+νpy 
+  - the velocity along both  x  and  y  axes stays the same
+     - v′x=vx+νvx 
+     - v′y=vy+νvy 
+   - these are kinematic formulas
