@@ -167,7 +167,7 @@ We need:
 - prediction & measurement update (below)
 ![image](https://user-images.githubusercontent.com/47606318/124137151-fe954d80-dab7-11eb-8a9c-2935f9528e8c.png)
 
-**Note: KF精髓在于Kalman gain. Kalman gain本质上是weighted average 的 weight。你越相信你的prediction，uncertainty越小，observation的weight就越小；反之，你越不相信你的prediction，uncertainty越大，observation的weight越大。**
+**Note: KF精髓在于Kalman gain. Kalman gain本质上是weighted average 的 weight。你越相信你的prediction，prediction的uncertainty越小，observation的weight就越小；反之，你越不相信你的prediction，其uncertainty越大，相反observation的weight越大。**
 
 - Kalman Filter Summary with simple example (use location & velocity as estimated states **1D Kalman filter**)
 ![image](https://user-images.githubusercontent.com/47606318/124292555-497e9600-db88-11eb-8794-89735ec8d624.png)
