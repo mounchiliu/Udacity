@@ -323,7 +323,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 - the covariance matrix is defined as the expectation value of the noise vector $\nu$ times the noise vector $\nu^T$
   - $Q = E[\nu \nu^T] = E[Gaa^TG^T]$
 
-**Note:D（X）=E{[X-E（X）]^2}**
+**Note:D（X）=E{[X-E（X）]^2}**  --> v is the random variable, E(v) = 0
 
 - as matrix $G$ does not contain random variables, we can put it outside the expectation calculation
 
