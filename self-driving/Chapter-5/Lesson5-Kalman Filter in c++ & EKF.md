@@ -372,10 +372,27 @@ Why do we not use the process noise in the state prediction function, even thoug
 - $H$ is the matrix that projects your belief about the object's current state into the measurement space of the sensor
   - for lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position
     - the state vector $x$ contains information about $[p_x, p_y, v_x, v_y]$ whereas the $z$ vector will only contain $[p_x, p_y]$
-  - multiplying $Hx$ allows us to compare $x$, our belief, with $z$, the sensor measurement
+  - multiplying $Hx$ allows us to compare $x$ (our belief), with $z$ (the sensor measurement)
 
 
 - what does the prime notation in the $x$ vector represent?
   - the prime notation like $p_x'$ means you have already done the prediction step but have not done the measurement step yet
   - in other words, the object was at $p_x$ 
   - after time $\Delta{t}$, you calculate where you believe the object will be based on the motion model and get $p_x'$
+
+
+**Q:** Find the right $H$ matrix to project from a 4D state to a 2D observation space, as follows: $\begin{pmatrix} p_x \\ p_y \end{pmatrix} = H \begin{pmatrix} p_x' \\ p_y' \\ v_x' \\ v_y' \end{pmatrix}$
+
+- Here are your options:
+  - A. $H = \begin{pmatrix} 1 & 0 \\ 0 & 1 \end{pmatrix}$
+  - B. $H = \begin{pmatrix} 1 & 0 \\ 0 & 1 \\ 0 & 0 \\ 0 & 0 \end{pmatrix}$
+  - C. $H = \begin{pmatrix} 1 & 1 \end{pmatrix}$
+  - D. $H = \begin{pmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \end{pmatrix}$
+
+(Hint: first consider the matrix dimensions, then try to use a 0 or 1 to correctly project the components into the measurement space.)
+
+
+**A:** It's D matrix.
+In order to obtain our measurement (x and y) we need to determine the H matrix. (x and y) is found by multiplying H with the state vector.
+
+So let’s find out first what is the dimension of our H matrix. Here we have a 2 by 1 matrix, and that came from our m by n H matrix times the four row and one column matrix. Now, from the matrix multiplication we know that the number of columns of the first matrix should be equal with the number of rows of a second matrix, which is 4. And also the number of rows of the first matrix is the same with the number of rows of the result matrix, which is 2. So our H is a matrix of 2 rows and 4 columns. And finally we put ones and zeroes so that the px and py coordinates are propagated to the result Z.
