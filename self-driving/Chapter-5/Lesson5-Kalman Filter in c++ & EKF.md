@@ -417,11 +417,12 @@ Remember that the measurement vector is two dimensional and the **two measuremen
   - and it is a distribution with zero mean and a 2 x 2 covariance matrix which comes from the product of the vertical vector $\omega$ and its transpose
 
 
-- $R = E[\omega \omega^T] = \begin{pmatrix} \sigma^2_{px} & 0 \\ 0 & \sigma^2_{py} \end{pmatrix}$ where R is the measurement noise covariance matrix
+-  ![image](https://user-images.githubusercontent.com/47606318/124777946-26325d00-df73-11eb-953f-f5106b8f8043.png)
+where R is the measurement noise covariance matrix
   - in other words, the matrix $R$ represents the uncertainty in the position measurements we receive from the laser sensor
 
 
-- generally, the parameters for the random noise measurement matrix will be provided by the sensor manufacturer
+- **generally**, the parameters for the **random noise measurement matrix** will be provided by the **sensor manufacturer**
 - for the extended Kalman filter project, we have provided $R$ matrices values for both the radar sensor and the lidar sensor
-- remember that the off-diagonal $0$s in $R$ indicate that the noise processes are uncorrelated
+- remember that the **off-diagonal $0$s in $R$** indicate that the **noise processes are uncorrelated**. **Therefore, they are 0**.
 
