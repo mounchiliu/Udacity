@@ -332,3 +332,7 @@ $\begin{cases} p_x' = p_x + v_x \Delta t + \frac{a_x \Delta t^2}{{2}}\\ p_y' = p
 
 - so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix: $Q = G Q_{\nu} G^T = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
 
+**note on notation**
+  - some authors describe $Q$ as the complete process noise covariance matrix
+  - and some authors describe $Q$ as the covariance matrix of the individual noise processes
+  - in our case, the covariance matrix of the individual noise processes matrix is called $Q_\nu$, which is something to be aware of
