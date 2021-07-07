@@ -301,7 +301,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 
 - combining both 2D position and 2D velocity equations previously deducted formulas we have:
-![image](https://user-images.githubusercontent.com/47606318/124766154-3cd3b680-df69-11eb-95d4-060ec4979eef.png)
+![image](https://user-images.githubusercontent.com/47606318/124766831-d9965400-df69-11eb-9d02-23e69d54274a.png)
 
 
   - looking at the deterministic part of our motion model, we assume that the velocity is constant
