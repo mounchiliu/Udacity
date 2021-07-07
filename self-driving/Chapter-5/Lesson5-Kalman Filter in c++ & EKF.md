@@ -363,4 +363,19 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 - we also know that our state is a 4D vector ![image](https://user-images.githubusercontent.com/47606318/124773091-32b4b680-df6f-11eb-8299-b149d2a98bfe.png)
 
+
 #### Variable Definitions
+- $z$ is the measurement vector
+  - for a lidar sensor, the $z$ vector contains the $position_x$ and $position_y$ measurements
+
+
+- $H$ is the matrix that projects your belief about the object's current state into the measurement space of the sensor
+  - for lidar, this is a fancy way of saying that we discard velocity information from the state variable since the lidar sensor only measures position
+    - the state vector $x$ contains information about $[p_x, p_y, v_x, v_y]$ whereas the $z$ vector will only contain $[p_x, p_y]$
+  - multiplying $Hx$ allows us to compare $x$, our belief, with $z$, the sensor measurement
+
+
+- what does the prime notation in the $x$ vector represent?
+  - the prime notation like $p_x'$ means you have already done the prediction step but have not done the measurement step yet
+  - in other words, the object was at $p_x$ 
+  - after time $\Delta{t}$, you calculate where you believe the object will be based on the motion model and get $p_x'$
