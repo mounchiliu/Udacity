@@ -279,10 +279,10 @@ Why do we not use the process noise in the state prediction function, even thoug
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ### Process Covariance Matrix
-### Calculating Acceleration Noise Parameters
+#### Calculating Acceleration Noise Parameters
 - before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$)), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
 
-### Process Covariance Matrix Q - Intuition
+#### Process Covariance Matrix Q - Intuition
 - as a reminder, here are the state covariance matrix update equation and the equation for $Q$
 - $P' = FPF^T + Q$
 
@@ -345,7 +345,22 @@ Why do we not use the process noise in the state prediction function, even thoug
 ![image](https://user-images.githubusercontent.com/47606318/124765914-0433dd00-df69-11eb-9bff-9a11f25f5627.png)
 
 
-### note on notation
+#### note on notation
   - some authors describe $Q$ as the complete process noise covariance matrix
   - and some authors describe $Q$ as the covariance matrix of the individual noise processes
   - in our case, the covariance matrix of the individual noise processes matrix is called $Q_\nu$, which is something to be aware of
+
+### Laser Measurements
+
+- let's design our measurement model for a laser sensor in 2D
+  - this will involve defining the right measurement vector $z$, the measurement matrix $H$, and the covariance matrix $R$
+
+
+- the Lidar sensor output is a point cloud, but for simplicity we consider here that we already analyzed the pointcloud to compute the 2D location of the pedestrian (e.g. use algorithm like clustering)
+  - so our measurement vector is just: ![image](https://user-images.githubusercontent.com/47606318/124773027-26305e00-df6f-11eb-9ed3-9e22124ad375.png)
+
+
+
+- we also know that our state is a 4D vector ![image](https://user-images.githubusercontent.com/47606318/124773091-32b4b680-df6f-11eb-8299-b149d2a98bfe.png)
+
+#### Variable Definitions
