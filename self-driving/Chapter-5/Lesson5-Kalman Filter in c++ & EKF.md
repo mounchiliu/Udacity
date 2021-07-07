@@ -286,8 +286,9 @@ Why do we not use the process noise in the state prediction function, even thoug
 - as a reminder, here are the state covariance matrix update equation and the equation for $Q$
 - $P' = FPF^T + Q$
 
+![image](https://user-images.githubusercontent.com/47606318/124765744-dc447980-df68-11eb-83b9-8cc501336bbe.png)
 
-- $Q = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
+
 
 
 - because our state vector only **tracks position and velocity**, we are **modeling acceleration as a random noise**
@@ -332,7 +333,10 @@ $\begin{cases} p_x' = p_x + v_x \Delta t + \frac{a_x \Delta t^2}{{2}}\\ p_y' = p
   - this means that the covariance $\sigma_{axy}$ in $Q_{\nu}$ is zero: $Q_{\nu} = \begin{pmatrix} \sigma_{ax}^2 & \sigma_{axy} \\ \sigma_{axy} & \sigma_{ay}^2 \end{pmatrix} = \begin{pmatrix} \sigma_{ax}^2 & 0 \\ 0 & \sigma_{ay}^2 \end{pmatrix}$
 
 
-- so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix: $Q = G Q_{\nu} G^T = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
+- so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix:
+
+![image](https://user-images.githubusercontent.com/47606318/124765914-0433dd00-df69-11eb-9bff-9a11f25f5627.png)
+
 
 ### note on notation
   - some authors describe $Q$ as the complete process noise covariance matrix
