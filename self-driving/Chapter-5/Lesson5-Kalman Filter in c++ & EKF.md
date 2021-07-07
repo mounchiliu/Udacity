@@ -275,3 +275,60 @@ Why do we not use the process noise in the state prediction function, even thoug
 **A:** It's process noise. The prediction equation treats the pedestrian's velocity as constant. As such, a randomly accelerating pedestrian creates a process noise.
 
 **We can clearly see that the process noise depends on both: the elapsed time and the uncertainty of acceleration**
+
+#### Process Covariance Matrix
+##### Calculating Acceleration Noise Parameters
+- before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
+
+#### Process Covariance Matrix Q - Intuition
+- as a reminder, here are the state covariance matrix update equation and the equation for $Q$
+- $P' = FPF^T + Q$
+
+
+- $Q = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
+
+
+- because our state vector only **tracks position and velocity**, we are **modeling acceleration as a random noise**
+- the $Q$ matrix **includes time $\Delta t$ to account** for the fact that **as more time passes, we become more uncertain** about our position and velocity
+  - so as $\Delta t$ increases, we add more uncertainty to the state covariance matrix $P$
+
+
+- say we have two consecutive observations of the same pedestrian with initial and final velocities
+- from the kinematic formulas, we can derive the current position and speed as a function of previous state variables, including the change in the velocity, or in other words, including the acceleration $a = \dfrac{\Delta v}{\Delta t} = \dfrac{v_{k+1} - v_k}{\Delta t}$
+
+
+- combining both 2D position and 2D velocity equations previously deducted formulas we have:
+$\begin{cases} p_x' = p_x + v_x \Delta t + \frac{a_x \Delta t^2}{{2}}\\ p_y' = p_y + v_y \Delta t + \frac{a_y \Delta t^2}{{2}}\\ v_x' = v_x + a_x \Delta t\\ v_y' = v_y + a_y \Delta t \end{cases}$
+  - looking at the deterministic part of our motion model, we assume that the velocity is constant
+    - however, in reality, the pedestrian speed might change
+
+- since the acceleration is unknown, we can add it to the noise component
+    - this random noise would be expressed analytically as in the last terms in the equation
+- so, we have a random acceleration vector $\nu$ in this form: $\nu = \begin{pmatrix} \nu_{px} \\ \nu_{py} \\ \nu_{vx} \\ \nu_{vy} \end{pmatrix} = \begin{pmatrix} \frac{a_x \Delta t^2}{{2}} \\ \frac{a_y \Delta t^2}{{2}} \\ a_x \Delta t \\ a_y \Delta t \end{pmatrix}$ which is described by a zero mean and a covariance matrix $Q$, so $\nu \sim N(0,Q)$
+
+
+- this vector $\nu$ can be decomposed into two components: a 4 by 2 matrix $G$ which does not contain random variables and a 2 by 1 matrix $a$ which contains the random acceleration components: $\nu = \begin{pmatrix} \frac{a_x \Delta t^2}{{2}} \\ \frac{a_y \Delta t^2}{{2}} \\ a_x \Delta t \\ a_y \Delta t \end{pmatrix} = \begin{pmatrix} \frac{\Delta t^2}{{2}} & 0 \\ 0 & \frac{\Delta t^2}{{2}} \\ \Delta t & 0 \\ 0 & \Delta t \end{pmatrix} \begin{pmatrix} a_x\\ a_y \end{pmatrix} = Ga$
+
+
+- $\Delta t$ is computed at each Kalman filter step and the acceleration is a random vector with zero mean and standard deviations, $\sigma_{ax}^2$ and $\sigma_{ay}^2$
+  - $a_x \sim N(0,\sigma_{ax}^2)$
+  - $a_y \sim N(0,\sigma_{ay}^2)$
+
+- based on our noise vector we can define now the new covariance matrix $Q$
+- the covariance matrix is defined as the expectation value of the noise vector $\nu$ times the noise vector $\nu^T$
+  - $Q = E[\nu \nu^T] = E[Gaa^TG^T]$
+
+- as matrix $G$ does not contain random variables, we can put it outside the expectation calculation
+  - $Q = G E[aa^T] G^T = G \begin{pmatrix} \sigma_{ax}^2 & \sigma_{axy} \\ \sigma_{axy} & \sigma_{ay}^2 \end{pmatrix} G^T = G Q_{\nu} G^T$
+- this leaves us with three statistical moments:
+  - the expectation of ax times ax, which is the variance of ax squared: $\sigma_{ax}^2$
+  - the expectation of ay times ay, which is the variance of ay squared: $\sigma_{ay}^2$
+  - the expectation of ax times ay, which is the covariance of ax and ay: $\sigma_{axy}$
+
+
+- $a_x$ and $a_y$ are assumed uncorrelated noise processes
+  - this means that the covariance $\sigma_{axy}$ in $Q_{\nu}$ is zero: $Q_{\nu} = \begin{pmatrix} \sigma_{ax}^2 & \sigma_{axy} \\ \sigma_{axy} & \sigma_{ay}^2 \end{pmatrix} = \begin{pmatrix} \sigma_{ax}^2 & 0 \\ 0 & \sigma_{ay}^2 \end{pmatrix}$
+
+
+- so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix: $Q = G Q_{\nu} G^T = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
+
