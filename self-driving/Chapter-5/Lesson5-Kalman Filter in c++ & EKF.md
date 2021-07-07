@@ -275,7 +275,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 **A:** It's process noise. The prediction equation treats the pedestrian's velocity as constant. As such, a randomly accelerating pedestrian creates a process noise.
 
 **We can clearly see that the process noise depends on both: the elapsed time and the uncertainty of acceleration**
-
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ### Process Covariance Matrix
 ### Calculating Acceleration Noise Parameters
 - before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
