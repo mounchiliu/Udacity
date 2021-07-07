@@ -276,11 +276,11 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 **We can clearly see that the process noise depends on both: the elapsed time and the uncertainty of acceleration**
 
-#### Process Covariance Matrix
-##### Calculating Acceleration Noise Parameters
+### Process Covariance Matrix
+### Calculating Acceleration Noise Parameters
 - before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
 
-#### Process Covariance Matrix Q - Intuition
+### Process Covariance Matrix Q - Intuition
 - as a reminder, here are the state covariance matrix update equation and the equation for $Q$
 - $P' = FPF^T + Q$
 
@@ -332,7 +332,7 @@ $\begin{cases} p_x' = p_x + v_x \Delta t + \frac{a_x \Delta t^2}{{2}}\\ p_y' = p
 
 - so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix: $Q = G Q_{\nu} G^T = \begin{pmatrix} \frac{\Delta t^4}{{4}}\sigma_{ax}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^4}{{4}}\sigma_{ay}^2 & 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 \\ \frac{\Delta t^3}{{2}}\sigma_{ax}^2 & 0 & \Delta t^2\sigma_{ax}^2 & 0 \\ 0 & \frac{\Delta t^3}{{2}}\sigma_{ay}^2 & 0 & \Delta t^2\sigma_{ay}^2 \end{pmatrix}$
 
-**note on notation**
+### note on notation
   - some authors describe $Q$ as the complete process noise covariance matrix
   - and some authors describe $Q$ as the covariance matrix of the individual noise processes
   - in our case, the covariance matrix of the individual noise processes matrix is called $Q_\nu$, which is something to be aware of
