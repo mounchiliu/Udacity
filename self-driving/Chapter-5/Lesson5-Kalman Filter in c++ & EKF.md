@@ -301,16 +301,18 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 
 - combining both 2D position and 2D velocity equations previously deducted formulas we have:
-$\begin{cases} p_x' = p_x + v_x \Delta t + \frac{a_x \Delta t^2}{{2}}\\ p_y' = p_y + v_y \Delta t + \frac{a_y \Delta t^2}{{2}}\\ v_x' = v_x + a_x \Delta t\\ v_y' = v_y + a_y \Delta t \end{cases}$
+![image](https://user-images.githubusercontent.com/47606318/124766154-3cd3b680-df69-11eb-95d4-060ec4979eef.png)
+
+
   - looking at the deterministic part of our motion model, we assume that the velocity is constant
     - however, in reality, the pedestrian speed might change
 
 - since the acceleration is unknown, we can add it to the noise component
     - this random noise would be expressed analytically as in the last terms in the equation
-- so, we have a random acceleration vector $\nu$ in this form: $\nu = \begin{pmatrix} \nu_{px} \\ \nu_{py} \\ \nu_{vx} \\ \nu_{vy} \end{pmatrix} = \begin{pmatrix} \frac{a_x \Delta t^2}{{2}} \\ \frac{a_y \Delta t^2}{{2}} \\ a_x \Delta t \\ a_y \Delta t \end{pmatrix}$ which is described by a zero mean and a covariance matrix $Q$, so $\nu \sim N(0,Q)$
+- so, we have a random acceleration vector $\nu$ in this form:![image](https://user-images.githubusercontent.com/47606318/124766229-4eb55980-df69-11eb-9921-e213ff9df5a9.png)which is described by a zero mean and a covariance matrix $Q$, so $\nu \sim N(0,Q)$
 
 
-- this vector $\nu$ can be decomposed into two components: a 4 by 2 matrix $G$ which does not contain random variables and a 2 by 1 matrix $a$ which contains the random acceleration components: $\nu = \begin{pmatrix} \frac{a_x \Delta t^2}{{2}} \\ \frac{a_y \Delta t^2}{{2}} \\ a_x \Delta t \\ a_y \Delta t \end{pmatrix} = \begin{pmatrix} \frac{\Delta t^2}{{2}} & 0 \\ 0 & \frac{\Delta t^2}{{2}} \\ \Delta t & 0 \\ 0 & \Delta t \end{pmatrix} \begin{pmatrix} a_x\\ a_y \end{pmatrix} = Ga$
+- this vector $\nu$ can be decomposed into two components: a 4 by 2 matrix $G$ which does not contain random variables and a 2 by 1 matrix $a$ which contains the random acceleration components: ![image](https://user-images.githubusercontent.com/47606318/124766291-5e34a280-df69-11eb-8c06-51bb0660156c.png)
 
 
 - $\Delta t$ is computed at each Kalman filter step and the acceleration is a random vector with zero mean and standard deviations, $\sigma_{ax}^2$ and $\sigma_{ay}^2$
