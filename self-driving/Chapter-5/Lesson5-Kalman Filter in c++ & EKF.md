@@ -349,7 +349,7 @@ Why do we not use the process noise in the state prediction function, even thoug
   - some authors describe $Q$ as the complete process noise covariance matrix
   - and some authors describe $Q$ as the covariance matrix of the individual noise processes
   - in our case, the covariance matrix of the individual noise processes matrix is called $Q_\nu$, which is something to be aware of
-
+------------------------
 ### Laser Measurements
 
 - let's design our measurement model for a laser sensor in 2D
@@ -380,7 +380,7 @@ Why do we not use the process noise in the state prediction function, even thoug
   - in other words, the object was at $p_x$ 
   - after time $\Delta{t}$, you calculate where you believe the object will be based on the motion model and get $p_x'$
 
-
+----------------------------------------
 **Q:** Find the right $H$ matrix to project from a 4D state to a 2D observation space, as follows: $\begin{pmatrix} p_x \\ p_y \end{pmatrix} = H \begin{pmatrix} p_x' \\ p_y' \\ v_x' \\ v_y' \end{pmatrix}$
 
 - Here are your options:
@@ -395,4 +395,33 @@ Why do we not use the process noise in the state prediction function, even thoug
 **A:** It's D matrix.
 In order to obtain our measurement (x and y) we need to determine the H matrix. (x and y) is found by multiplying H with the state vector.
 
-So let’s find out first what is the dimension of our H matrix. Here we have a 2 by 1 matrix, and that came from our m by n H matrix times the four row and one column matrix. Now, from the matrix multiplication we know that the number of columns of the first matrix should be equal with the number of rows of a second matrix, which is 4. And also the number of rows of the first matrix is the same with the number of rows of the result matrix, which is 2. So our H is a matrix of 2 rows and 4 columns. And finally we put ones and zeroes so that the px and py coordinates are propagated to the result Z.
+So let’s find out first what is the dimension of our H matrix. Our H is a matrix of 2 rows and 4 columns. (H_(2x4) * x_(4x1) = z_(2x1))And finally we put ones and zeroes so that the px and py coordinates are propagated to the result Z.
+
+-------------------------------------------------------------------------------------------------------
+
+### Measurement Noise Covariance Matrix R
+
+- $R$ represents the **uncertainty in our sensor measurements**
+- the **dimensions** of the $R$ matrix is **square** and each side of its matrix is the **same length as the number of measurements parameters**
+
+**Q:** What is the dimensionality of the noise covariance matrix, $R$ in previous laser suitation?
+
+**A:** It's 2 by 2 matrix.
+Remember that the measurement vector is two dimensional and the **two measurements, $p_x$ and $p_y$**, have uncorrelated noise components.
+
+
+- for laser sensors, we have a 2D measurement vector
+- each location component $p_x$, $p_y$ are affected by a random noise
+- so our noise vector $\omega$ has the same dimension as $z$
+  - noise vector shows the uncertainty in measurement  related to px and py, defined as $ \sigma_{px}, sigma^2_{py}$
+  - and it is a distribution with zero mean and a 2 x 2 covariance matrix which comes from the product of the vertical vector $\omega$ and its transpose
+
+
+- $R = E[\omega \omega^T] = \begin{pmatrix} \sigma^2_{px} & 0 \\ 0 & \sigma^2_{py} \end{pmatrix}$ where R is the measurement noise covariance matrix
+  - in other words, the matrix $R$ represents the uncertainty in the position measurements we receive from the laser sensor
+
+
+- generally, the parameters for the random noise measurement matrix will be provided by the sensor manufacturer
+- for the extended Kalman filter project, we have provided $R$ matrices values for both the radar sensor and the lidar sensor
+- remember that the off-diagonal $0$s in $R$ indicate that the noise processes are uncorrelated
+
