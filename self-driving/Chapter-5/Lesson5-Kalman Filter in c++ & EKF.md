@@ -237,7 +237,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 ![image](https://user-images.githubusercontent.com/47606318/124614522-e69e3f00-dea6-11eb-8374-a2b7678680e0.png)
 
 - Because the noise mean is zero. 
-- Looking closely at the process noise, we know from the Kalman Filter algorithm that its mean is zero and its covariance matrix is usually noted by N(0,Q)  The first equation only predicts the mean state. As the mean value of the noise is zero, it does not directly affect the predicted state. However, we can see that the noise covariance  Q  is added here to the state covariance prediction so that the state uncertainty always increases through the process noise
+- Looking closely at the process noise, we know from the Kalman Filter algorithm that its mean is zero and its covariance matrix is usually noted by N(0,Q)  The first equation only predicts the mean state. As the mean value of the noise is zero, it does **not directly affect the predicted state**. However, we can see that the **noise covariance  Q  is added** here to the **state covariance prediction** so that the state uncertainty always increases through the process noise
 
 
 ### 2D tracking problem with Kalman Filter
