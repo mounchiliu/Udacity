@@ -280,7 +280,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 ### Process Covariance Matrix
 ### Calculating Acceleration Noise Parameters
-- before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
+- before we discuss the derivation of the process covariance matrix $Q$ (e.g. Q ~ N(0,  $\sigma^2$)), you might be curious about how to choose values for $\sigma_{ax}^2$ and $\sigma_{ay}^2$
 
 ### Process Covariance Matrix Q - Intuition
 - as a reminder, here are the state covariance matrix update equation and the equation for $Q$
