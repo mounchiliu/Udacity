@@ -324,7 +324,9 @@ Why do we not use the process noise in the state prediction function, even thoug
   - $Q = E[\nu \nu^T] = E[Gaa^TG^T]$
 
 - as matrix $G$ does not contain random variables, we can put it outside the expectation calculation
-  - $Q = G E[aa^T] G^T = G \begin{pmatrix} \sigma_{ax}^2 & \sigma_{axy} \\ \sigma_{axy} & \sigma_{ay}^2 \end{pmatrix} G^T = G Q_{\nu} G^T$
+
+![image](https://user-images.githubusercontent.com/47606318/124766447-845a4280-df69-11eb-91fe-861429fdff0d.png)
+
 - this leaves us with three statistical moments:
   - the expectation of ax times ax, which is the variance of ax squared: $\sigma_{ax}^2$
   - the expectation of ay times ay, which is the variance of ay squared: $\sigma_{ay}^2$
@@ -332,7 +334,8 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 
 - $a_x$ and $a_y$ are assumed uncorrelated noise processes
-  - this means that the covariance $\sigma_{axy}$ in $Q_{\nu}$ is zero: $Q_{\nu} = \begin{pmatrix} \sigma_{ax}^2 & \sigma_{axy} \\ \sigma_{axy} & \sigma_{ay}^2 \end{pmatrix} = \begin{pmatrix} \sigma_{ax}^2 & 0 \\ 0 & \sigma_{ay}^2 \end{pmatrix}$
+  - this means that the covariance $\sigma_{axy}$ in $Q_{\nu}$ is zero:  ![image](https://user-images.githubusercontent.com/47606318/124766527-976d1280-df69-11eb-99b1-f6b231299754.png)
+
 
 
 - so after combining everything in one matrix we obtain our 4 by 4 $Q$ matrix:
