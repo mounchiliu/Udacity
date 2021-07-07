@@ -288,7 +288,7 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 ![image](https://user-images.githubusercontent.com/47606318/124765744-dc447980-df68-11eb-83b9-8cc501336bbe.png)
 
-
+**Q: How can we get the process covariance matrix Q**
 
 
 - because our state vector only **tracks position and velocity**, we are **modeling acceleration as a random noise**
