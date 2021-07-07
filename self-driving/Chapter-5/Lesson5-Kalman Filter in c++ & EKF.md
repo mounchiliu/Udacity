@@ -274,3 +274,4 @@ Why do we not use the process noise in the state prediction function, even thoug
 
 **A:** It's process noise. The prediction equation treats the pedestrian's velocity as constant. As such, a randomly accelerating pedestrian creates a process noise.
 
+**We can clearly see that the process noise depends on both: the elapsed time and the uncertainty of acceleration**
