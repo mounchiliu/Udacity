@@ -67,6 +67,7 @@ void Tracking::ProcessMeasurement(const MeasurementPackage &measurement_pack) {
 
   // compute the time elapsed between the current and previous measurements
   // dt - expressed in seconds
+  // transform ts from microseconds to seconds
   float dt = (measurement_pack.timestamp_ - previous_timestamp_) / 1000000.0;
   previous_timestamp_ = measurement_pack.timestamp_;
 
