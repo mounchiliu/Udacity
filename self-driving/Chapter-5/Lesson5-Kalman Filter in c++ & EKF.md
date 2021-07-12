@@ -476,7 +476,7 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
 ![image](https://user-images.githubusercontent.com/47606318/125309056-054b7c80-e364-11eb-8fa0-02360cf638a0.png)
 
 
-  - we always predict that the pedestrian position would be somewhere along the straight line, although their real position follows the green trajectory
-  - so, our estimation would actually underestimate the truth state.
+  - we always **predict** that the pedestrian position would be somewhere **along the straight line**, although their **real position follows the green trajectory**
+  - so, our estimation would actually **underestimate** the truth state.
     - to solve this, **instead of using the linear motion model**, we can **predict the state by using a more complex motion model** such as the circular motion (**non-linear motion model**)
       - you will learn about that in the next lesson
