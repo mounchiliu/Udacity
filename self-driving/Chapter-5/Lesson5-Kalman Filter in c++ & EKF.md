@@ -463,8 +463,20 @@ The State Vector of a pedestrian is described by $p_x, p_y$ position and $v_x, v
   - basically we have to wait for the next process measurement call, and then to apply the prediction before the next measurement update
   - the first process measurement call will just **initialize the state position with the first $x$ and $y$ measurement** and the state velocity **$v_x$, $v_y$ with $0$**, assuming we don't know the initial velocity
 
-The code see in：
+The code solution see in：
 https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20laser_measurements_programming_quiz
 
 ![image](https://user-images.githubusercontent.com/47606318/125303685-90764380-e35f-11eb-825e-10e8202db5b2.png)
 
+
+- the estimated trajectory (or location of px, py) actually might look different depending on how we choose the measurement or process noises
+  - for example, if I **increase** the **measurement noise** so the measurement covariance matrix, $R$, has two on the diagonal line
+  - it **works quite well** when the **pedestrian is moving along the straight line**
+  - however, our **linear motion mode**l is **not perfect**, especially for the scenarios when the **pedestrian is moving along a circular path**, as you see here
+![image](https://user-images.githubusercontent.com/47606318/125309056-054b7c80-e364-11eb-8fa0-02360cf638a0.png)
+
+
+  - we always predict that the pedestrian position would be somewhere along the straight line, although their real position follows the green trajectory
+  - so, our estimation would actually underestimate the truth state.
+    - to solve this, **instead of using the linear motion model**, we can **predict the state by using a more complex motion model** such as the circular motion (**non-linear motion model**)
+      - you will learn about that in the next lesson
