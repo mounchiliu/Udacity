@@ -426,3 +426,17 @@ where R is the measurement noise covariance matrix
 - for the extended Kalman filter project, we have provided $R$ matrices values for both the radar sensor and the lidar sensor
 - remember that the **off-diagonal $0$s in $R$** indicate that the **noise processes are uncorrelated**. **Therefore, they are 0**.
 
+---------------------------------------------
+### KF in Tracking PED in 2D with Lidar
+
+BG: The State Vector of a pedestrian is described by $p_x, p_y$ position and $v_x, v_y$ velocity.
+
+- The code is structured into three main parts, a `KalmanFilter` class, a `Tracking` class, and a `MeasurementPackage` class
+  - the `KalmanFilter` class is what you've already coded before but the whole `KalmanFilter` code including its predict and update functions is now decoupled from the tracking logic
+  - the `Tracking` class is where we actually create and use a `KalmanFilter` object
+    - for this quiz, you're going to modify $F$ and $Q$ matrices according to the elapsed time between the current and previous measurement
+    - you can do so inside the `ProcessMeasurement` function
+    - afterwards, your code should call the `KalmanFilter` predict and update functions
+    - just keep in mind that all the `KalmanFilter` matrices, as well as the predict update functions are members of the `kf_` object
+
+
