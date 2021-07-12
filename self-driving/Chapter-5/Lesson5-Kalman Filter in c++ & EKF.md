@@ -429,14 +429,41 @@ where R is the measurement noise covariance matrix
 ---------------------------------------------
 ### KF in Tracking PED in 2D with Lidar
 
-BG: The State Vector of a pedestrian is described by $p_x, p_y$ position and $v_x, v_y$ velocity.
+**Background：** 
+
+The State Vector of a pedestrian is described by $p_x, p_y$ position and $v_x, v_y$ velocity.
 
 - The code is structured into three main parts, a `KalmanFilter` class, a `Tracking` class, and a `MeasurementPackage` class
   - the `KalmanFilter` class is what you've already coded before but the whole `KalmanFilter` code including its predict and update functions is now decoupled from the tracking logic
   - the `Tracking` class is where we actually create and use a `KalmanFilter` object
-    - for this quiz, you're going to modify $F$ and $Q$ matrices according to the elapsed time between the current and previous measurement
+    - for this quiz, 1. you're going to modify $F$ and $Q$ matrices according to the elapsed time between the current and previous measurement
     - you can do so inside the `ProcessMeasurement` function
-    - afterwards, your code should call the `KalmanFilter` predict and update functions
-    - just keep in mind that all the `KalmanFilter` matrices, as well as the predict update functions are members of the `kf_` object
+    - afterwards, 2. your code should call the `KalmanFilter` predict and update functions
+    - Note that all the `KalmanFilter` matrices, as well as the predict update functions are members of the `kf_` object
 
+- there is a big difference between this and previous programming assignment
+- here, we don't process the entire list of measurements, but rather the most recent measurement
+- we are **simulating a more realistic scenario** where the **process measurement function is called every time we receive new data** from a given sensor which, in this case, is only from a laser scanner
+
+#### Info about Code 
+- also, the sensor data is **organized in package objects** now
+- these measurement packages are passed as an argument to the process measurement function
+  - the package properties are grouped into `MeasurementPackage` class
+    - this class is composed of a `timestamp_` variable, which is a point in time where the measurement was created by a sensor and an enum variable called `SensorType` with two options, `LASER` and `RADAR`
+      - this is not important right now, as you will only see laser measurement
+
+- there is also vector variable with most recent raw measurements
+  - specifically, if `MeasurementPackage` comes from a laser sensor, then the `raw_measurements_` vector will contain just observed $x$ and $y$ position
+  - the big number assigned to the timestamp variable is the number of microseconds that have elapsed since Thursday, January 1, 1970, which obviously always increases
+
+- In this programing assignment the **tracking code** will **first call the predict function** and **then measurement update function**
+  - that is because our **prediction** depends on the **elapsed time between two measurements**, and the **time is not fixed** anymore
+  - so we can **predict our state only after next observation timestamp** is available (得到下帧数据、获取时间戳，才可预测)
+  - basically we have to wait for the next process measurement call, and then to apply the prediction before the next measurement update
+  - the first process measurement call will just **initialize the state position with the first $x$ and $y$ measurement** and the state velocity **$v_x$, $v_y$ with $0$**, assuming we don't know the initial velocity
+
+The code see in：
+
+
+![image](https://user-images.githubusercontent.com/47606318/125303685-90764380-e35f-11eb-825e-10e8202db5b2.png)
 
