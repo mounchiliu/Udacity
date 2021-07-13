@@ -531,9 +531,9 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
 
 ![image](https://user-images.githubusercontent.com/47606318/125464570-0c28953d-a3d2-4b8b-ac3f-0efab1b98fa8.png)
 
-![image](https://user-images.githubusercontent.com/47606318/125464668-1ea6f464-c829-4101-be07-a76a57077426.png)
+对于此处公式，下有详细推理：
 
-下有详细推理：
+![image](https://user-images.githubusercontent.com/47606318/125464668-1ea6f464-c829-4101-be07-a76a57077426.png)
 
 ![image](https://user-images.githubusercontent.com/47606318/125464708-ff552286-0418-4a3a-800f-7eaf79aa4dbf.png)
 
