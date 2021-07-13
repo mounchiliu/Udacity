@@ -513,7 +513,7 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
   - measurement function: $x' = h(x) + \omega$
   - measurement vector: $z = \begin{pmatrix} \rho \\ \varphi \\ \dot{\rho} \end{pmatrix}$
   - $\omega \sim N(0, R)$
-- their radar measurement covariance matrix becomes a three-by-three diagonal matrix $R = \begin{pmatrix} \sigma_{\rho}^2 & 0 & 0 \\ 0 & \sigma_{\varphi}^2 & 0 \\ 0 & 0 & \sigma_{\dot{\rho}}^2 \end{pmatrix}$
+- their radar measurement covariance matrix becomes a three-by-three diagonal matrix $R = \begin{pmatrix} \sigma_{\rho}^2 & 0 & 0 ,\\ 0 & \sigma_{\varphi}^2 & 0 ,\\ 0 & 0 & \sigma_{\dot{\rho}}^2 \end{pmatrix}$
 
 
 - so, our state is still the same and has four parameters, $p_x, p_y, v_x, v_y$ and the measurement vector has three parameters, $\rho, \varphi, \dot{\rho}$
@@ -523,8 +523,19 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
 
 
 
-
 - the next questing is, what is the measurement function $h(x')$, that maps the predicted state $x'$ into the measurement space?
   - $h$ function basically specifies how the predictive position and speed can be related to the object range, bearing, and range rate
   - looking at the $h$ function, you can see that it is a nonlinear function
   - so comparing to the linear case when using laser data, we don't have a measurement matrix, $H$ here
+
+
+![image](https://user-images.githubusercontent.com/47606318/125464570-0c28953d-a3d2-4b8b-ac3f-0efab1b98fa8.png)
+
+![image](https://user-images.githubusercontent.com/47606318/125464668-1ea6f464-c829-4101-be07-a76a57077426.png)
+
+![image](https://user-images.githubusercontent.com/47606318/125464708-ff552286-0418-4a3a-800f-7eaf79aa4dbf.png)
+
+
+
+
+
