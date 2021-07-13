@@ -533,8 +533,17 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
 
 ![image](https://user-images.githubusercontent.com/47606318/125464668-1ea6f464-c829-4101-be07-a76a57077426.png)
 
+下有详细推理：
+
 ![image](https://user-images.githubusercontent.com/47606318/125464708-ff552286-0418-4a3a-800f-7eaf79aa4dbf.png)
 
+#### Mapping with a Nonlinear Function
+
+![image](https://user-images.githubusercontent.com/47606318/125466728-1ec97f9a-7d9b-40de-80f7-6c984449021a.png)
+
+**Q:** What happens if we have a nonlinear measurement function, $h(x)$. Can we apply the Kalman Filter equations to update the predicted state, $X$, with new measurements, $z$?
+<br/>
+**A:** No! We aren't working with Gaussian distributions after applying a nonlinear measurement function.
 
 
 
