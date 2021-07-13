@@ -482,3 +482,49 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
       - you will learn about that in the next lesson
 --------------------------------------
 ### Radar Measurements
+
+- although the laser is providing the pedestrian position with high accuracy, we don't actually have yet a way to observe directly its speed
+  - that's where radars can help us
+  - using the Doppler effect, the radar can directly measure the radial velocity of a moving object
+  - the radial velocity is the component of velocity moving towards or away from the sensor
+- however, we also know that the radar has a lower spatial resolution than the laser sensors
+  - so why not combine both of these sensors together?
+
+#### KF with radar
+  - the state transition function will be exactly what you've designed in the LIDAR case: $x' = f(x) + \nu$
+  - we use the same state with four parameters: $x = \begin{pmatrix} p_x \\ p_y \\ v_x \\ v_y \end{pmatrix}$ with the same linear motion model and process noise, motion model: $z = h(x') + \omega$
+  - 
+- however, our new radar sees the world differently
+- let's have our vehicle here and the pedestrian here
+- the $x$ axis always points in the vehicle's direction of movement and the $y$ axis points to the left
+- instead of a 2D pose, the radar can directly measure:
+  - the object range, $\rho$
+    - it is a radial distance from origin to our pedestrian
+    - we can always define a ray which extends from the origin to our object position
+  - bearing, $\varphi$
+    - it is the angle between $\rho$ and $x$:
+  - range rate (radial velocity - change of $\rho$): $\dot{\rho}$
+    - it is the velocity along this ray
+    
+![image](https://user-images.githubusercontent.com/47606318/125463125-8e580bb4-5f0a-4422-8b8f-cc3401f0a483.png)
+
+- similar to our motion model, the radar observations are corrupted by a zero-mean random noise, $\omega$ 
+- considering that the three measurement vector components are **not cross-correlated**
+  - measurement function: $x' = h(x) + \omega$
+  - measurement vector: $z = \begin{pmatrix} \rho \\ \varphi \\ \dot{\rho} \end{pmatrix}$
+  - $\omega \sim N(0, R)$
+- their radar measurement covariance matrix becomes a three-by-three diagonal matrix $R = \begin{pmatrix} \sigma_{\rho}^2 & 0 & 0 \\ 0 & \sigma_{\varphi}^2 & 0 \\ 0 & 0 & \sigma_{\dot{\rho}}^2 \end{pmatrix}$
+
+
+- so, our state is still the same and has four parameters, $p_x, p_y, v_x, v_y$ and the measurement vector has three parameters, $\rho, \varphi, \dot{\rho}$
+  - $ \begin{pmatrix} \rho \\ \varphi \\ \dot{\rho} \end{pmatrix} \xleftarrow {h(x')} \begin{pmatrix} p_x' \\ p_y' \\ v_x' \\ v_y' \end{pmatrix}$
+
+**以下内容了解即可，因为目前有很多毫米波e.g.大陆408 直接可以输出（x, y)**
+
+
+
+
+- the next questing is, what is the measurement function $h(x')$, that maps the predicted state $x'$ into the measurement space?
+  - $h$ function basically specifies how the predictive position and speed can be related to the object range, bearing, and range rate
+  - looking at the $h$ function, you can see that it is a nonlinear function
+  - so comparing to the linear case when using laser data, we don't have a measurement matrix, $H$ here
