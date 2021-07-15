@@ -552,7 +552,48 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
 
 ## EFK
 
+- say that we have our predicted state $x$ described by a Gaussian distribution
+- if we map this Gaussian to a nonlinear function $h$, then the result is not a Gaussian distribution anymore (it nas multiple peaks)
+  - so the Kalman filter is not applicable anymore
+  
+  ![image](https://user-images.githubusercontent.com/47606318/125795450-6d495509-704a-4971-87e6-61e5acccc844.png)
+  
+  Map Gaussian to a non-linear function:
+  - in order to visualize the impact of this nonlinear transformation, I've created a simple test
+  - I've generated a list of 10,000 random values drawn from a normal distribution with a mean of $0$ and a standard deviation of $3$ (red histogram of values below)
+    - you can see that it follows a Gaussian shape
+  - then for each of these values $x_i$, I have computed the corresponding $h$ over $x_i$
+    - in my case, $h$ is the arctangent of $x_i$, which is a nonlinear function that is also used in our radar measurement model
+    - the result is stored in an output list
+  - finally, I use my output list to generate a new histogram (blue histogram below)
+    - what we see here is that the resulting distribution is **not a Gaussian** any more, because of the nonlinearity of $h$
+    - moreover, the transformed density cannot be represented in closed form, so **Kalman filter update equations are not applicable** here
+    - a possible solution is to **linearize the $(x)$ function (EFK)**
+  ![image](https://user-images.githubusercontent.com/47606318/125795490-64271fe0-266b-4fd9-ab30-3d630c61ec54.png)
 
 
 
 
+
+
+- Approximate our measurement function $h$ by a linear function which is tangent to $h$ at the mean location of the original Gaussian
+- so I repeated the same test
+  - I used the same list of randomly sampled values from a normal distribution
+  - but instead of applying the nonlinear function $h$, all the $x_i$ values were passed through the linear approximation of $h$
+  - we can see now that unlike the non linear case, this time, our resulting distribution retained the Gaussian nature
+
+<img src="resources/nonlinear_transformation_example_graphs_2.png"/>
+
+- so how do we linearize a nonlinear function?
+- the extended Kalman filter uses a method called first order Taylor expansion
+  - what we do is we first evaluate the nonlinear function $h$ at the mean location $\mu$, which is the best estimate of our predicted distribution
+  - then we extrapolate the line with slope around $\mu$
+    - this slope is given by the first derivative of $h$
+  - similarly, extended Kalman filters implement exactly the same linearization when the state transition $f(x)$ of $x$ is also nonlinear
+
+
+- the orange line represents the first order Taylor expansion of $\arctan(x)$
+  - the equation of the line that linearizes the function $h(x)$ at the mean location $\mu$ solution: $h(x) \approx h(\mu) + \frac{\partial h(\mu)}{\partial x}(x-\mu) = \arctan(\mu) + \frac{1}{1+\mu^2}(x-\mu)$
+  - in our example $\mu=0$, therefore: $h(x) \approx \arctan(0) + \frac{1}{1+0}(x-0) = x$ so, the function, $h(x) = \arctan(x)$ will be approximated by a line: $h(x) \approx x$
+
+<img src="resources/nonlinear_transformation_example_graphs_2.png"/>
