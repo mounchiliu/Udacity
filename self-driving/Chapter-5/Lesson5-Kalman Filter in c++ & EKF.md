@@ -582,12 +582,12 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
   - but instead of applying the nonlinear function $h$, all the $x_i$ values were passed through the linear approximation of $h$
   - we can see now that unlike the non linear case, this time, our resulting distribution retained the Gaussian nature
 
-<img src="resources/nonlinear_transformation_example_graphs_2.png"/>
+![image](https://user-images.githubusercontent.com/47606318/125797391-d667a7c2-7303-4b4c-84b9-1d6fd23aa1a0.png)
 
 - so how do we linearize a nonlinear function?
 - the extended Kalman filter uses a method called first order Taylor expansion
-  - what we do is we first evaluate the nonlinear function $h$ at the mean location $\mu$, which is the best estimate of our predicted distribution
-  - then we extrapolate the line with slope around $\mu$
+  - what we do is we first evaluate the nonlinear function $h$ at the mean location $\mu$ (类似于计算在此处的值), which is the best estimate of our predicted distribution
+  - then we extrapolate the line with slope around $\mu$ (思想：泰勒展开)
     - this slope is given by the first derivative of $h$
   - similarly, extended Kalman filters implement exactly the same linearization when the state transition $f(x)$ of $x$ is also nonlinear
 
@@ -596,4 +596,102 @@ https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/02.%20las
   - the equation of the line that linearizes the function $h(x)$ at the mean location $\mu$ solution: $h(x) \approx h(\mu) + \frac{\partial h(\mu)}{\partial x}(x-\mu) = \arctan(\mu) + \frac{1}{1+\mu^2}(x-\mu)$
   - in our example $\mu=0$, therefore: $h(x) \approx \arctan(0) + \frac{1}{1+0}(x-0) = x$ so, the function, $h(x) = \arctan(x)$ will be approximated by a line: $h(x) \approx x$
 
-<img src="resources/nonlinear_transformation_example_graphs_2.png"/>
+### How to Perform a Taylor Expansion
+
+- the general form of a Taylor series expansion of an equation, $f(x)$, at point $\mu$ is as follows: $f(x) \approx f(\mu) + \frac{\partial f(\mu)}{\partial x} ( x - \mu)f(x)$
+- simply replace $f(x)$ with a given equation, find the partial derivative, and plug in the value $\mu$ to find the Taylor expansion at that value of $\mu$
+  - see if you can find the Taylor expansion of $arctan(x)$
+- 以上保留至一阶导数
+
+- let’s say we have a predicted state density described by $\mu = 0$ and $\sigma = 3$
+- the function that projects the predicted state, $x$, to the measurement space $z$ is $h(x) = arctan(x)$ and its partial derivative is $\partial h = 1/(1+ x^2)$
+
+### Multivariate Taylor Series Expansion
+
+- now that you’ve seen how to do a Taylor series expansion with a one-dimensional equation, we’ll need to look at the Taylor series expansion for multi-dimensional equations
+- recall from the Radar Measurements lecture that the $h$ function is composed of three equations that show how the predicted state, $x' = (p_x', p_y', v_x', v_y')^T$, is mapped into the measurement space, $z = (\rho, \varphi, \dot{\rho})^T$
+
+![image](https://user-images.githubusercontent.com/47606318/125799254-99c549e6-db87-4939-8c4c-138e91ed2cb7.png)
+
+- these are multi-dimensional equations, so we will need to use a multi-dimensional Taylor series expansion to make a linear approximation of the $h$ function
+- here is a general formula for the multi-dimensional Taylor series expansion:
+
+![image](https://user-images.githubusercontent.com/47606318/125799389-1c388ea5-a25a-4824-ba7d-0df0031f1248.png)
+
+  - $Df(a)$ is called the *Jacobian matrix* and $D^2f(a)$ the *Hessian matrix*
+  - they represent first order and second order derivatives of multi-dimensional equations
+  - a full Taylor series expansion would include higher order terms as well for the third order derivatives, fourth order derivatives, and so on
+
+
+- notice the similarities between the multi-dimensional Taylor series expansion and the one-dimensional Taylor series expansion: $T(x) = f(a) + \frac{f'(a)}{1!}(x - a) + \frac{f''(a)}{2!}(x-a)^2 + \frac{f'''(a)}{3!}(x - a)^3 + ...$
+
+
+- to derive a linear approximation for the $h$ function, we will **only keep the expansion up to the Jacobian matrix $Df(a)$**--we will ignore the Hessian matrix $D^2f(a)$ and other higher order terms
+- assuming $(x - a)$ is small, $(x - a)^2$ or the multi-dimensional equivalent $(x-a)^T (x - a)$ will be even smaller; **the extended Kalman filter we'll be using assumes that higher order terms beyond the Jacobian are negligible**
+
+
+### Jacobian Matrix
+
+- if we generalize our previous example to a **higher dimension**, the derivative of $h(x)$, with respect to $x$, is called the **Jacobian** and it's going to be a **matrix containing all the partial derivatives**
+
+![image](https://user-images.githubusercontent.com/47606318/125800069-818d256e-d79b-4a52-8813-d1808f83d8ff.png)
+
+
+- for example, for my function $h$, in the first row, I have the first dimension of the function $h1$ derived with respect to the first dimension of $x$, second dimension of $x$, to the nth dimension of $x$
+- then I repeat this for every dimension of lower case $h$
+
+![image](https://user-images.githubusercontent.com/47606318/125800165-a4321b32-44ae-4d6c-b1e6-5247088c3168.png)
+
+
+- to be more specific, I know that the measurement function describes three components in radar: range, bearing, and range rate
+- my state is a vector with four components: $p_x, p_y, v_x, v_y$
+- in that case, the Jacobian matrix $H_j$ is going to be matrix with three rows and four columns
+- after computing all of these partial derivatives, I obtain the matrix
+
+![image](https://user-images.githubusercontent.com/47606318/125801329-68b0e4f3-9520-4889-a619-c65c2397d387.png)
+
+![image](https://user-images.githubusercontent.com/47606318/125801874-79cd132f-63f8-4489-89a2-e7689b1750ac.png)
+
+
+- 以下内容了解即可
+- 对于最后一个函数使用求导的除法定理
+
+![image](https://user-images.githubusercontent.com/47606318/125803130-ff2fdff3-6ad1-492a-bdf7-8dc42329257b.png)
+
+![image](https://user-images.githubusercontent.com/47606318/125803223-516fc09a-029d-4893-8a1c-7d59dfe6fb9f.png)
+
+该过程将non-linear的观测方程线性化
+
+### Jacobian Matrix Programming Quiz
+
+对于以上方程，使用编程计算Jacobian Matrix
+
+solution： 
+
+https://github.com/mounchiliu/Udacity/tree/main/self-driving/Chapter-5/03_jacobian_matrix
+
+
+### Extended Kalman Filter Equations
+
+- although the mathematical proof is somewhat complex, it turns out that the Kalman filter equations and extended Kalman filter equations are very similar
+- the main differences are:
+  - the $F$ matrix will be replaced by $F_j$ when calculating $P'$
+  - the $H$ matrix in the Kalman filter will be replaced by the Jacobian matrix $H_j$ when calculating $S$, $K$, and $P$
+  - to calculate $x'$, the prediction update function, $f$, is used instead of the $F$ matrix
+  - to calculate $y$, the $h$ function is used instead of the $H$ matrix
+
+
+- for this project, however, we do not need to use the $f$ function or $F_j$
+- if we had been using a non-linear model in the prediction step, we would need to replace the $F$ matrix with its Jacobian, $F_j$
+- however, we are using a linear model for the prediction step
+- so, for the prediction step, we can still use the regular Kalman filter equations and the $F$ matrix rather than the extended Kalman filter equations
+
+
+- the measurement update for lidar will also use the regular Kalman filter equations, since lidar uses linear equations
+- only the measurement update for the radar sensor will use the extended Kalman filter equations
+
+
+- one important point to reiterate is that the equation $y = z - Hx'$ for the Kalman filter does not become $y = z - H_jx$ for the extended Kalman filter
+- instead, for extended Kalman filters, we'll use the $h$ function directly to map predicted locations $x'$ from Cartesian to polar coordinates
+
+![image](https://user-images.githubusercontent.com/47606318/125804037-18c4ecf6-9733-4401-b952-c2b91b61f691.png)
