@@ -29,9 +29,12 @@ void UKF::AugmentedSigmaPoints(MatrixXd* Xsig_out) {
   // set augmented dimension
   int n_aug = 7;
 
+  // 我们使用一个二维噪声向量 来描述过程模型。不确定性νk由两个独立的变量噪声过程组成
+  // 第一个是纵向加速噪音 va ,它影响车辆的纵向速度，并且在每一个时间阶段改变它的值。
   // Process noise standard deviation longitudinal acceleration in m/s^2
   double std_a = 0.2;
-
+  
+  // 另一个为yaw的加速度
   // Process noise standard deviation yaw acceleration in rad/s^2
   double std_yawdd = 0.2;
 
